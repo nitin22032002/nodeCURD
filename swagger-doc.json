@@ -1,0 +1,460 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0.0", 
+      "title": "Task Manager Api Include Registration/Login and CURD Operation's",
+      "description": "It is Task Manager Web App In Node Js",
+      "license": {
+        "name": "MIT",
+        "url": "https://opensource.org/licenses/MIT"
+      }
+    },
+    "host": "localhost:5050",
+    "tags": [
+      {
+        "name": "Users Authentication",
+        "description": "API for users registration and login"
+      },
+      {
+        "name": "Task Manager",
+        "description": "API for Task Management CURD"
+      }
+    ],
+    "schemes": ["http","https"],
+    "consumes": ["application/json"],
+    "produces": ["application/json","text/plain"],
+    "paths": {
+      "/auth/register": {
+        "get": {
+          "tags": ["Users Authentication"],
+          "summary": "For Render User Registration Page",
+          "responses": {
+            "200": {
+              "description": "OK"
+            },
+              "500":{
+                "description": "Server Error...."
+              }
+          }
+        }
+      },
+      "/auth/login": {
+        "get": {
+          "tags": ["Users Authentication"],
+          "summary": "For Render User Login Page",
+          "responses": {
+            "200": {
+              "description": "OK"
+            },
+              "500":{
+                "description": "Server Error...."
+              }
+          }
+        }
+      },
+      "/auth/adduser": {
+        "post": {
+          "tags": ["Users Authentication"],
+          "summary": "For Create New User",
+          "parameters":[{
+              "name":"user",
+              "in":"body",
+              "description": "User that we want to create",
+              "example":{
+                "name" : "fake",
+                "password" : "123456789",
+                "emailid" : "fake@gmail.com"
+                
+                }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "New user is created",
+              "schema":{
+                "$ref":"#/definitions/credentialToken"
+              }
+            },
+              "500":{
+                "description": "Server Error....",
+                "schema":{
+                  "$ref":"#/definitions/ErrorModel"
+                }
+              }
+          }
+        }
+      },
+      "/auth/checkuser": {
+        "post": {
+          "tags": ["Users Authentication"],
+          "summary": "For Check User Credential",
+          "parameters":[{
+              "name":"user",
+              "in":"body",
+              "description": "Email Id and password for check credential",
+              "example":{
+                "password" : "123456789",
+                "emailid" : "fake@gmail.com"
+                
+                }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "User Verified",
+              "schema":{
+                "$ref":"#/definitions/credentialToken"
+              }
+            },
+            "401":{
+              "description": "Invalid User....."
+            },
+              "500":{
+                "description": "Server Error....",
+                "schema":{
+                  "$ref":"#/definitions/ErrorModel"
+                }
+              }
+          }
+        }
+      },
+      "/": {
+        "get": {
+          "tags": ["Task Manager"],
+          "summary": "For Home Page",
+          "parameters":[{
+              "name":"token",
+              "in":"header",
+              "description": "token",
+              "example":{
+               "Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiNjFjMTZiYTZkNzZiODBhMmZlOGM0NDdlIiwiaWF0IjoxNjQwMDg5MTYxfQ.b5f6fRzRaJIYLE8iYXwLqoAh5lT7NmXsgBtKOffpIR0"
+                }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK Return HTML Page"
+              
+            },
+            "401":{
+              "description": "Invalid User....."
+            },
+              "500":{
+                "description": "Server Error...."
+              }
+          }
+        }
+      }
+      ,
+      "/getalltask": {
+        "get": {
+          "tags": ["Task Manager"],
+          "summary": "Api To Get all Task of login user",
+          "parameters":[{
+              "name":"token",
+              "in":"header",
+              "description": "token",
+              "example":{
+               "Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiNjFjMTZiYTZkNzZiODBhMmZlOGM0NDdlIiwiaWF0IjoxNjQwMDg5MTYxfQ.b5f6fRzRaJIYLE8iYXwLqoAh5lT7NmXsgBtKOffpIR0"
+                }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Array Of Tasks",
+              "schema":{
+                "type":"array",
+                "items":{
+                    "$ref":"#/definitions/task"   
+                },
+                "example":{
+                  "status": true,
+                  "task": [
+                    {
+                      "_id": "61c1e829a1b14eeca4920128",
+                      "userid": "61c16ba6d76b80a2fe8c447e",
+                      "task": "NaN",
+                      "tag": "Personal",
+                      "status": 1,
+                      "date": "2021-12-21T14:43:53.862Z",
+                      "__v": 0
+                    },
+                    {
+                      "_id": "61c1e8515f099cef2fcdbd61",
+                      "userid": "61c16ba6d76b80a2fe8c447e",
+                      "task": "NaN",
+                      "tag": "Personal",
+                      "status": 1,
+                      "date": "2021-12-21T14:44:33.978Z",
+                      "__v": 0
+                    },
+                    {
+                      "_id": "61c1ea6df142dac20beab61e",
+                      "userid": "61c16ba6d76b80a2fe8c447e",
+                      "task": "NaN",
+                      "tag": "Personal",
+                      "status": 1,
+                      "date": "2021-12-21T14:53:33.795Z",
+                      "__v": 0
+                    },
+                    {
+                      "_id": "61c1ea8bf142dac20beab621",
+                      "userid": "61c16ba6d76b80a2fe8c447e",
+                      "task": "NaN",
+                      "tag": "Personal",
+                      "status": 1,
+                      "date": "2021-12-21T14:54:03.184Z",
+                      "__v": 0
+                    },
+                    {
+                      "_id": "61c1eabf6555bb83f9b629b8",
+                      "userid": "61c16ba6d76b80a2fe8c447e",
+                      "task": "NaN",
+                      "tag": "Personal",
+                      "status": 1,
+                      "date": "2021-12-21T14:54:55.971Z",
+                      "__v": 0
+                    }
+                  ]
+                }
+              }
+              
+            },
+            "401":{
+              "description": "Invalid User....."
+            },
+              "500":{
+                "description": "Server Error...."
+              }
+          }
+        }
+      },
+      "/addtask": {
+        "post": {
+          "tags": ["Task Manager"],
+          "summary": "For Add New Task",
+          "parameters":[{
+              "name":"token",
+              "in":"header",
+              "description": "token",
+              "example":{
+               "Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiNjFjMTZiYTZkNzZiODBhMmZlOGM0NDdlIiwiaWF0IjoxNjQwMDg5MTYxfQ.b5f6fRzRaJIYLE8iYXwLqoAh5lT7NmXsgBtKOffpIR0"
+                }
+            },{
+              "name":"task",
+              "in":"body",
+              "description":"New Task Data",
+              "schema":{
+                "example":{
+                    "task": "NaN",
+                    "tag": "Personal",
+                    "status": 1
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "new task created",
+              "schema":{
+                "$ref":"#/definitions/task"
+              }
+              
+            },
+            "401":{
+              "description": "Invalid User....."
+            },
+              "500":{
+                "description": "Server Error...."
+              }
+          }
+        }
+      },
+      "/deletetask/{id}": {
+        "delete": {
+          "tags": ["Task Manager"],
+          "summary": "For Delete Task",
+          "parameters":[{
+              "name":"token",
+              "in":"header",
+              "description": "token",
+              "example":{
+               "Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiNjFjMTZiYTZkNzZiODBhMmZlOGM0NDdlIiwiaWF0IjoxNjQwMDg5MTYxfQ.b5f6fRzRaJIYLE8iYXwLqoAh5lT7NmXsgBtKOffpIR0"
+                }
+            },{
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "description": "ID of task",
+              "type": "string",
+              "example":{"id":"61c1e829a1b14eeca4920128"}
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Status of task delete or not"
+              
+              
+            },
+            "401":{
+              "description": "Invalid User....."
+            },
+              "500":{
+                "description": "Server Error...."
+              }
+          }
+        }
+      },
+      "/updatetask/{id}": {
+        "put": {
+          "tags": ["Task Manager"],
+          "summary": "For Home Page",
+          "parameters":[{
+              "name":"token",
+              "in":"header",
+              "description": "token",
+              "example":{
+               "Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiNjFjMTZiYTZkNzZiODBhMmZlOGM0NDdlIiwiaWF0IjoxNjQwMDg5MTYxfQ.b5f6fRzRaJIYLE8iYXwLqoAh5lT7NmXsgBtKOffpIR0"
+                }
+            },{
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "description": "ID of task",
+              "type": "string",
+              "example":{"id":"61c1e829a1b14eeca4920128"}
+            },
+            {
+              "name":"task",
+              "in":"body",
+              "description":"New Task Data",
+              "schema":{
+                "example":{
+                    "task": "NaN",
+                    "tag": "Personal",
+                    "status": 1
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Task Updated"
+              ,
+              "schema":{
+                "$ref":"#/definitions/task"
+              }
+              
+            },
+            "401":{
+              "description": "Invalid User....."
+            },
+              "500":{
+                "description": "Server Error...."
+              }
+          }
+        }
+      }
+    },
+    "definitions": {
+      "credentialToken":{
+        "required": ["status", "token"],
+        "properties": {
+          "token": {
+            "type": "string",
+            "uniqueItems": true
+          },
+          "status": {
+            "type": "boolean"
+          }
+        },
+        "example":{
+          "status":true,
+          "token":"eyJhbGciOiJIUzI1NiIsInR5cCI6Ikfake@pXVCJ9.eyJkYXRhIjoiNjFjMTZiYTZkNzZiODBhMmZlOGM0NDdlIiwiaWF0IjoxNjQwMDg5MTYxfQ.b5f6fRzRaJIYLE8iYXwLqoAh5lT7NmXsgBtKOffpIR0"
+        }
+      },
+      
+      "ErrorModel":{
+        "required": ["status", "error"],
+        "properties": {
+          "error": {
+            "type": "object"
+          },
+          "status": {
+            "type": "boolean"
+          }
+        },
+        "example":{
+          "status":false,
+          "error":"according to error"  
+        }
+      },
+      "User": {
+        "required": ["name", "_id", "emailid","password","date"],
+        "properties": {
+          "_id": {
+            "type": "integer",
+            "uniqueItems": true
+          },
+          "emailid": {
+            "type": "string",
+            "uniqueItems": true
+          },
+          "name": {
+            "type": "string"
+          },
+          "password":{
+            "type":"string"
+          },
+          "date":{
+            "type":"date",
+            "default":"Current Date"
+          }
+      },
+      "example":{
+        "name":"fake",
+        "emailid":"fake@gmail.com",
+        "password":"123456789",
+        "_id":"61c1e829a1b14eeca4920128",
+        "date":"current date"
+      }
+    },
+      "task": {
+        "required": ["task", "_id", "userid","tag","date","status"],
+        "properties": {
+          "_id": {
+            "type": "integer",
+            "uniqueItems": true
+          },
+          "tag": {
+            "type": "string",
+            "default":"Personal"
+          },
+          "task": {
+            "type": "string"
+          },
+          "status":{
+            "type":"integer",
+            "default":1
+          },
+          "userid":{
+            "type":"string"
+          },
+          "date":{
+            "type":"date",
+            "default":"Current Date"
+          }
+      },
+      "example":{
+        "_id": "61c1e829a1b14eeca4920128",
+        "userid": "61c16ba6d76b80a2fe8c447e",
+        "task": "NaN",
+        "tag": "Personal",
+        "status": 1,
+        "date": "2021-12-21T14:43:53.862Z"
+      }
+      }
+    }
+  }
+
+  

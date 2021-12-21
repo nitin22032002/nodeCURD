@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager-SignUp</title>
+    <script defer src="/javascripts/register.js"></script>
+</head>
+<body>
+    <form id="signupForm">
+
+        <center>
+            
+        <table border="1" cellpadding="3" cellspacing="5">
+            <caption><h2>SignUp</h2></caption>
+            <tr>
+                <th>Name</th>
+                <td><input required minlength="2" maxlength="20" placeholder="User Name" id="username" type="text"></td>
+            </tr>
+            <tr>
+                <th>Email Id</th>
+                <td><input required placeholder="Email Id" id="emailid" type="email"></td>
+            </tr>
+            <tr>
+                <th>Password</th>
+                <td><input required minlength="8" maxlength="24" placeholder="Password" id="password" type="password"></td>
+            </tr>
+            <tr>
+                <th><input value="SignUp" type="submit"></th>
+                <th><input value="Login" onclick="location.href='/auth/login'" type="button"></th>
+            </tr>
+            <tr id="msg">
+
+            </tr>
+        </table>
+    </center>
+</form>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager</title>
+    
+</head>
+<body>
+    <button id="logoutbtn" style="display: block;font-size: 20px;">Logout</button>
+    <center>
+        <form id="taskForm">
+            <table border="1" cellpadding="10" cellspacing="10">
+                <caption >Add Task</caption>
+                <tr>
+                    <th>Task</th>
+                    <td><input required minlength="5"  placeholder="Task" id="task" type="text"></td>
+                </tr>
+                <tr>
+                    <th>Tag</th>
+                    <td><input required value="Personal"  placeholder="Tag" id="tag" type="text"></td>
+                </tr>
+                <tr>
+                    <th>Status</th>
+                    <td>
+                        <select id="status">
+                            <option value="1">Incomplete</option>
+                            <option value="2">Partial complete</option>
+                            <option value="3">complete</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th id="btn"><input value="Add Task" type="submit"></th>
+                    <th><input value="Clear" type="reset"></th>
+                </tr>
+                <tr id="msg">
+
+                </tr>
+            </table>
+        </form>
+    </center>
+    <div  style="margin: 20px;font-size: 18px;">
+           <table border="1" cellpadding="20" cellspacing="2">
+               <tr>
+                   <th>#</th>
+                   <th>Task Id</th>
+                   <th>Task</th>
+                   <th>Tag</th>
+                   <th>Status</th>
+                   <th>Date</th>
+               </tr>
+               <tbody id="taskbody">
+                   
+               </tbody>
+           </table>
+    </div>
+</body>
+<script src="/javascripts/taskManager.js"></script>
+</html>
