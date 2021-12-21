@@ -24,6 +24,10 @@ const sendRequest=async(method,body,url,cb)=>{
         body
     })
     let code=res.status
+    if(code===401){
+        alert("Invalid User")
+        handleLogout()
+    }
     res=await res.json()
     if(res.status){
         cb(res)
