@@ -9,7 +9,7 @@
         "url": "https://opensource.org/licenses/MIT"
       }
     },
-    "host": "nodetodocurd.herokuapp.com",
+    "host": "localhost:5050",
     "tags": [
       {
         "name": "Users Authentication",
